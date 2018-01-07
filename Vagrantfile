@@ -67,4 +67,12 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+
+  $script = <<SCRIPT
+    yum install epel-release -y
+    yum install iperf -y
+    date > /etc/vagrant_provisioned_at
+SCRIPT
+  config.vm.provision "shell", inline: $script
+
 end
